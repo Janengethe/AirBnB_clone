@@ -28,16 +28,10 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             for k, v in kwargs.items():
-                if kwargs[k] == "id":
-                    self.id = v
-                elif kwargs[k] == "created_at":
-                    self.created_at = datetime.strptime(v,
-                                                        "%Y-%m-%dT%H:%M:%S.%f")
-                elif kwargs[k] == "updated_at":
-                    self.updated_at = datetime.strptime(v,
-                                                        "%Y-%m-%dT%H:%M:%S.%f")
-                else:
-                    pass
+                if k == "created_at" or k == "updated_at":
+                    v = datetime.strptime(v, "%Y-%m-%dT%H:%M:%S.%f")
+                if k != "__class__":
+                    setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
@@ -48,7 +42,7 @@ class BaseModel:
         Returns string rep of class BaseModel
         Prints: "[<class name>] (<self.id>) <self.__dict__>"
         """
-        print("[{}] ({}) {}".
+        return ("[{}] ({}) {}".
                 format(self.__class__.__name__, self.id, self.__dict__))
 
     def __repr__(self):
@@ -73,12 +67,11 @@ class BaseModel:
         returns a dictionary containing all keys/values of
         __dict__ of the instance
         """
-        my_dict = self.__dict__
+        my_dict = {}
         my_dict["__class__"] = self.__class__.__name__
-        for k, v in my_dict.items():
-            if my_dict[k] == "id":
+        for k, v in self.__dict__.items():
+            if k == "id":
                 my_dict[k] = v
-
             elif isinstance(v, datetime):
                 my_dict[k] = v.isoformat()
             else:
