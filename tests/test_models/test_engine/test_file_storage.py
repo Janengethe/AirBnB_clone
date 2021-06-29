@@ -39,7 +39,8 @@ e '_TestFileStorage__file_path'"):
       self.assertIsNotNone(i)
       self.assertTrue(type(i), dict)
       for k, v in i.items():
-          self.assertIn(["id", "created_at", "updated_at", "__class__"], v)
+          for i, j in v.items():
+              self.assertIn(i, ["id", "created_at", "updated_at", "__class__"])
 
     def test_new(self):
         file3 = FileStorage()
