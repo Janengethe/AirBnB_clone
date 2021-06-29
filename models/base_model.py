@@ -36,6 +36,7 @@ class BaseModel:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            models.storage.new(self)
 
     def __str__(self):
         """
@@ -58,7 +59,6 @@ class BaseModel:
         with the current datetime
         Calls save(self) method of storage
         """
-        models.storage.new(self.to_dict())
         models.storage.save()
         self.updated_at = datetime.now()
 

@@ -9,6 +9,13 @@ Has private class attributes __file_path, __objects
 
 import os
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage:
@@ -17,6 +24,9 @@ class FileStorage:
     """
     __file_path = "BaseModel.json"
     __objects = {}
+    all_classes = {'BaseModel': BaseModel, 'User': User, 'State': State,
+                   'City': City, 'Amenity': Amenity, 'Place': Place,
+                   'Review': Review}
 
     def all(self):
         """
@@ -30,21 +40,18 @@ class FileStorage:
         setter->
         sets in __objects the obj with key "<obj class name>.id"
         """
-        if obj == {} or obj is None:
+        if obj is None:
             return
-        key = obj["__class__"] + "." + obj["id"]
+        key = obj.__class__.__name__ + "." + str(obj.id)
         FileStorage.__objects[key] = obj
 
     def save(self):
         """
         Serializes dict __objects to JSON file
         """
-        if FileStorage.__objects is None or FileStorage.__objects == {}:
-            pass
-
         my_dict = {}
-        for k, v in self.__objects.items():
-            my_dict[k] = v
+        for key, obj in FileStorage.__objects.items():
+            my_dict[key] = obj.to_dict()
         with open(FileStorage.__file_path, mode="w", encoding="UTF-8") as f:
             json.dump(my_dict, f)
 
@@ -55,6 +62,9 @@ class FileStorage:
         """
         if os.path.exists(FileStorage.__file_path):
             with open(FileStorage.__file_path, mode="r") as f:
-                FileStorage.__objects = json.load(f)
+                reloaded_dict = json.load(f)
+                for k, v in reloaded_dict.items():
+                    base = FileStorage.all_classes[v["__class__"]](**v)
+                    FileStorage.__objects[k] = base
         else:
             pass
