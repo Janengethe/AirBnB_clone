@@ -21,8 +21,8 @@ class BaseModel:
         """
         Initialization
         id uses uuid.uuid4(). Regenerates a unique id for each BaseModel.
-updated_at -> datetime will be updated everytime an object is changed.
-*args and **kwargs are used as constructors
+        updated_at -> datetime will be updated everytime an object is changed.
+        *args and **kwargs are used as constructors
         """
         if kwargs:
             self.id = str(uuid.uuid4())
@@ -48,7 +48,7 @@ updated_at -> datetime will be updated everytime an object is changed.
         Returns string rep of class BaseModel
         Prints: "[<class name>] (<self.id>) <self.__dict__>"
         """
-        return ("[{}] ({}) {}".
+        print("[{}] ({}) {}".
                 format(self.__class__.__name__, self.id, self.__dict__))
 
     def __repr__(self):
@@ -76,7 +76,10 @@ updated_at -> datetime will be updated everytime an object is changed.
         my_dict = self.__dict__
         my_dict["__class__"] = self.__class__.__name__
         for k, v in my_dict.items():
-            if k == "created_at" or k == "updated_at":
+            if my_dict[k] == "id":
+                my_dict[k] = v
+
+            elif isinstance(v, datetime):
                 my_dict[k] = v.isoformat()
             else:
                 my_dict[k] = v
