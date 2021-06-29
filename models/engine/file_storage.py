@@ -41,8 +41,12 @@ class FileStorage:
         """
         if FileStorage.__objects is None or FileStorage.__objects == {}:
             pass
-        with open(FileStorage.__file_path, mode="w") as f:
-            json.dump(FileStorage.__objects, f)
+
+        my_dict = {}
+        for k, v in self.__objects.items():
+            my_dict[k] = v
+        with open(FileStorage.__file_path, mode="w", encoding="UTF-8") as f:
+            json.dump(my_dict, f)
 
     def reload(self):
         """
