@@ -26,13 +26,15 @@ class HBNBCommand(cmd.Cmd):
                    'Review': Review}
 
     def do_EOF(self, line):
-        """ Interprets Ctrl + D """
+        """ Interprets Ctrl + D
+        """
         print()
         return True
 
     def do_quit(self, line):
-        """ Quit command to exit the program: Type quit"""
-        return True
+        """ Quit command to exit the program
+        """
+        raise SystemExit
 
     def emptyline(self):
         """Called when an empty line is entered in response to the prompt.
