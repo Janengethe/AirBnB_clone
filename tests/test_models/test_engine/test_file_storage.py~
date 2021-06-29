@@ -60,6 +60,3 @@ e '_TestFileStorage__file_path'"):
             for line in fl:
                 self.assertEqual(line, "{}")
         self.assertIs(file4.reload(), None)
-
-if __name__ == "__main__":
-    unittest.main()
