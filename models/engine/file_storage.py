@@ -59,12 +59,13 @@ class FileStorage:
         """
         Deserializes the JSON file to dict __objects
         It only load if the file exists, else pass
-        """
         if os.path.exists(FileStorage.__file_path):
+        """
+        try:
             with open(FileStorage.__file_path, mode="r") as f:
                 reloaded_dict = json.load(f)
                 for k, v in reloaded_dict.items():
                     base = FileStorage.all_classes[v["__class__"]](**v)
                     FileStorage.__objects[k] = base
-        else:
+        except FileNotFoundError:
             pass
