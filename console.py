@@ -158,5 +158,29 @@ class HBNBCommand(cmd.Cmd):
                 setattr(obj, a_list[2], a_list[3])
                 print(obj)
 
+    def default(self, line):
+        """Called on an input line when the command prefix is not recognized.
+        If this method is not overridden, it prints an error message and
+        returns.
+        """
+        if len(line) == 0:
+            return
+        else:
+            args = line.split('.')
+            class_arg = args[0]
+            if class_arg in HBNBCommand.all_classes:
+                if len(args) == 2:
+                    if args[1] == "all()":
+                        HBNBCommand.do_all(self, class_arg)
+                else:
+                    print("Try: {}.all() or all {}".format(args[0], args[0]))
+            else:
+                print("*** Unknown syntax: {}".format(line))
+                return
+        """
+        else:
+            if class_arg == 'all':
+                HBNBCommand.do_all(self, class_arg)
+        """
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
