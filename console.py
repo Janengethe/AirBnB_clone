@@ -174,6 +174,11 @@ class HBNBCommand(cmd.Cmd):
                         HBNBCommand.do_all(self, class_arg)
                     elif args[1] == "count()":
                         print((HBNBCommand.instance_count(self, class_arg)))
+                    elif str(args[1])[:4] == "show":
+                        string = args[1]
+                        c_id = string[6:-2]
+                        l_ine = str(class_arg) + " " + str(c_id)
+                        HBNBCommand.do_show(self, l_ine)
                     else:
                         pass
                 else:
