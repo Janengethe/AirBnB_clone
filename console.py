@@ -179,6 +179,11 @@ class HBNBCommand(cmd.Cmd):
                         c_id = string[6:-2]
                         l_ine = str(class_arg) + " " + str(c_id)
                         HBNBCommand.do_show(self, l_ine)
+                    elif str(args[1])[:7] == "destroy":
+                        string = args[1]
+                        c_id = string[9:-2]
+                        l_ine = str(class_arg) + " " + str(c_id)
+                        HBNBCommand.do_destroy(self, l_ine)
                     else:
                         pass
                 else:
