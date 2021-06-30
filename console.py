@@ -156,7 +156,6 @@ class HBNBCommand(cmd.Cmd):
             else:
                 obj = all_instances[ke_y]
                 setattr(obj, a_list[2], a_list[3])
-                print(obj)
 
     def default(self, line):
         """Called on an input line when the command prefix is not recognized.
@@ -184,6 +183,12 @@ class HBNBCommand(cmd.Cmd):
                         c_id = string[9:-2]
                         l_ine = str(class_arg) + " " + str(c_id)
                         HBNBCommand.do_destroy(self, l_ine)
+                    elif str(args[1])[:6] == "update":
+                        a_slc = args[1][7:-1]
+                        my_list = a_slc.split(", ")
+                        l = str(class_arg + " " + my_list[0][1:-1] + " " +
+                                my_list[1][1:-1] + " " + my_list[2][1:-1])
+                        HBNBCommand.do_update(self, l)
                     else:
                         pass
                 else:
