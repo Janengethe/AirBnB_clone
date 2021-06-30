@@ -156,6 +156,7 @@ class HBNBCommand(cmd.Cmd):
             else:
                 obj = all_instances[ke_y]
                 setattr(obj, a_list[2], a_list[3])
+                storage.save()
 
     def default(self, line):
         """Called on an input line when the command prefix is not recognized.
