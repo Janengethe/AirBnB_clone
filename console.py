@@ -187,9 +187,22 @@ class HBNBCommand(cmd.Cmd):
                     elif str(args[1])[:6] == "update":
                         a_slc = args[1][7:-1]
                         my_list = a_slc.split(", ")
-                        l = str(class_arg + " " + my_list[0][1:-1] + " " +
-                                my_list[1][1:-1] + " " + my_list[2][1:-1])
-                        HBNBCommand.do_update(self, l)
+                        _id = my_list[0][1:-1]
+                        if type(my_list[1]) == dict:
+                            for att, val in my_list[1].items():
+                                l = class_arg + " " + _id + " " + att + val
+                                HBNBCommand.do_update(self, l)
+                        else:
+                            if my_list[2][0] == '"' and my_list[2][-1] == '"':
+                                val = my_list[2][1:-1]
+                            else:
+                                val = my_list[2]
+                            if my_list[1][0] == '"' and my_list[1][-1] == '"':
+                                attr = my_list[1][1:-1]
+                            else:
+                                attr = my_list[1]
+                            l = str(class_arg + " " + _id + " " + attr + " " + val)
+                            HBNBCommand.do_update(self, l)
                     else:
                         pass
                 else:
