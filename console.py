@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
                 if line == v.__class__.__name__:
                     ke_y = line + "." + str(v.id)
                     obj_list.append(all_instances[ke_y])
-                    print(obj_list)
+            print(obj_list)
         else:
             print("** class doesn't exist **")
 
@@ -172,15 +172,36 @@ class HBNBCommand(cmd.Cmd):
                 if len(args) == 2:
                     if args[1] == "all()":
                         HBNBCommand.do_all(self, class_arg)
+                    elif args[1] == "count()":
+                        print((HBNBCommand.instance_count(self, class_arg)))
+                    else:
+                        pass
                 else:
                     print("Try: {}.all() or all {}".format(args[0], args[0]))
             else:
                 print("*** Unknown syntax: {}".format(line))
                 return
+
+    def instance_count(self, line):
         """
-        else:
-            if class_arg == 'all':
-                HBNBCommand.do_all(self, class_arg)
+        Returns a list containing string representation of instances
         """
+        count = 0
+        obj_list = []
+        all_list = []
+        all_instances = storage.all()
+        if line == "":
+            for k, obj in all_instances.items():
+                all_list.append(str(obj))
+                count = count + 1
+            return(count)
+        elif line in HBNBCommand.all_classes.keys():
+            for k, v in all_instances.items():
+                if line == v.__class__.__name__:
+                    ke_y = line + "." + str(v.id)
+                    obj_list.append(all_instances[ke_y])
+                    count = count + 1
+            return(count)
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
