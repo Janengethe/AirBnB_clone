@@ -74,10 +74,10 @@ class TestUser(unittest.TestCase):
         """
         Tests attributes are strings
         """
-        self.assertEqual(type(self.my_user.email), str)
-        self.assertEqual(type(self.my_user.password), str)
-        self.assertEqual(type(self.my_user.first_name), str)
-        self.assertEqual(type(self.my_user.first_name), str)
+        self.assertEqual(type(User.email), str)
+        self.assertEqual(type(User.password), str)
+        self.assertEqual(type(User.first_name), str)
+        self.assertEqual(type(User.last_name), str)
 
 if __name__ == "__main__":
     unittest.main()
