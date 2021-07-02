@@ -1,10 +1,12 @@
 #!/usr/bin/python3
-from models.base_model import BaseModel
-from datetime import datetime
-import json
-from models.engine.file_storage import FileStorage
 import os
+import json
 import unittest
+from models.user import User
+from models import storage
+from datetime import datetime
+from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 
 """ Testing instantiation"""
@@ -15,17 +17,17 @@ class TestFileStorage(unittest.TestCase):
       self.assertTrue(hasattr(FileStorage, "new"))
       self.assertTrue(hasattr(FileStorage, "save"))
       self.assertTrue(hasattr(FileStorage, "reload"))
+      self.assertTrue(hasattr(FileStorage, '_FileStorage__objects'))
+      self.assertTrue(hasattr(FileStorage, '_FileStorage__file_path'))
       self.assertTrue(hasattr(file1, "all"))
       self.assertTrue(hasattr(file1, "new"))
       self.assertTrue(hasattr(file1, "save"))
       self.assertTrue(hasattr(file1, "reload"))
       self.assertTrue(type(file1.all), dict)
       self.assertFalse(hasattr(file1, "__file_path"))
-      with self.assertRaisesRegex(AttributeError, "'FileStorage' object has no attribut\
-e '_TestFileStorage__objects'"):
+      with self.assertRaisesRegex(AttributeError, "'FileStorage' object has no attribute '_TestFileStorage__objects'"):
             type(file1.__objects) == dict
-      with self.assertRaisesRegex(AttributeError, "'FileStorage' object has no attribut\
-e '_TestFileStorage__file_path'"):
+      with self.assertRaisesRegex(AttributeError, "'FileStorage' object has no attribute '_TestFileStorage__file_path'"):
             type(file1.__file_path) == str
 
     def test_private_attribute(self):
@@ -37,6 +39,7 @@ e '_TestFileStorage__file_path'"):
       file2 = FileStorage()
       i = file2.all()
       self.assertIsNotNone(i)
+      self.assertIsInstance(i, dict)
       self.assertTrue(type(i), dict)
       """for k, v in i.items():
           for q, j in v.items():
@@ -44,25 +47,29 @@ e '_TestFileStorage__file_path'"):
       """
 
     def test_new(self):
-        file3 = FileStorage()
-        base1 = BaseModel()
-        obj = base1.to_dict()
-        """file3.new()
-        ke_y = obj["__class__"] + "." + obj.id
-        all_objects = file3.all()
-        self.assertIn(ke_y, all_objects)
-        self.assertIsNotNone(all_objects[ke_y])
-        self.assertNotEqual("{}", all_objects[ke_y])
         """
+        Tests method: new (saves object into dictionary)
+        """
+        n_storage = FileStorage()
+        dic = n_storage.all()
+        rev = User()
+        rev.id = 5437
+        rev.name = "Jane"
+        n_storage.new(rev)
+        key = rev.__class__.__name__ + "." + str(rev.id)
+        self.assertIsNotNone(dic[key])
 
     def test_save_reload(self):
-        file4 = FileStorage()
-        with open("BaseModel.json", mode="w") as f:
-            f.write("{}")
-        with open("BaseModel.json", mode="r") as fl:
-            for line in fl:
-                self.assertEqual(line, "{}")
-        self.assertIs(file4.reload(), None)
+        """Tests save and reload method"""
+        base2 = BaseModel()
+        base_s = base2.save()
+        self.assertTrue(os.path.isfile('BaseModel.json'))
+        tmp_obj = BaseModel()
+        tmp_id = 'BaseModel.' + tmp_obj.id
+        tmp_obj.save()
+        del storage._FileStorage__objects[tmp_id]
+        storage.reload()
+        self.assertIn(tmp_id, storage.all())
 
 if __name__ == "__main__":
     unittest.main()

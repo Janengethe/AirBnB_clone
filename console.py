@@ -201,7 +201,8 @@ class HBNBCommand(cmd.Cmd):
                                 attr = my_list[1][1:-1]
                             else:
                                 attr = my_list[1]
-                            l = str(class_arg + " " + _id + " " + attr + " " + val)
+                            l = str(class_arg + " " + _id + " " + attr +
+                                    " " + val)
                             HBNBCommand.do_update(self, l)
                     else:
                         pass
