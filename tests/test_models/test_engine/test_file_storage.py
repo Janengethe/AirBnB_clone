@@ -40,7 +40,8 @@ class TestFileStorage(unittest.TestCase):
       i = file2.all()
       self.assertIsNotNone(i)
       self.assertIsInstance(i, dict)
-      self.assertTrue(type(i), dict)
+      self.assertEqual(type(i), dict)
+      self.assertIs(i, file1._FileStorage__objects)
       """for k, v in i.items():
           for q, j in v.items():
               self.assertIn(q, ["id", "created_at", "updated_at", "__class__"])
