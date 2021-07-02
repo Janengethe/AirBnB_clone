@@ -39,7 +39,7 @@ is used to reload previous objects created.
 This class has methods that serializes a python dictionary to  JSON string and reverses the process from JSON string to a python dictionary
 
 Private class attributes:</br>
--` __file_path` - string - path to the JSON file</br>
+- ` __file_path` - string - path to the JSON file</br>
 - `__objects` - dictionary - empty but will store all objects by <class name>.id </br>
 Public instance methods:</br>
 - `all(self)` - returns the dictionary __objects </br>
