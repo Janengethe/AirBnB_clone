@@ -31,6 +31,12 @@ class TestUser(unittest.TestCase):
         """
         self.assertTrue(issubclass(self.my_user.__class__, BaseModel), True)
 
+    def test_isinstance(self):
+        """
+        Check that the created instance is an instance of the BaseModel class
+        """
+        self.assertIsInstance(self.my_user, BaseModel)
+
     def test_funcs(self):
         """
         Tests documentations
@@ -48,6 +54,21 @@ class TestUser(unittest.TestCase):
         self.assertTrue('password' in self.my_user.__dict__)
         self.assertTrue('first_name' in self.my_user.__dict__)
         self.assertTrue('last_name' in self.my_user.__dict__)
+
+    def test_they_exists(self):
+        """
+        Tests that the attributes exists
+        """
+        self.assertTrue(hasattr(User, 'email'))
+        self.assertTrue(hasattr(User, 'password'))
+        self.assertTrue(hasattr(User, 'first_name'))
+        self.assertTrue(hasattr(User, 'last_name'))
+
+    def test_their_types(self):
+        """
+        Test that all attributes are of the correct type
+        """
+        self.assertTrue(type(self.my_user), BaseModel)
 
     def test_str_attributes(self):
         """

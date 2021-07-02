@@ -41,7 +41,7 @@ class TestFileStorage(unittest.TestCase):
       self.assertIsNotNone(i)
       self.assertIsInstance(i, dict)
       self.assertEqual(type(i), dict)
-      self.assertIs(i, file1._FileStorage__objects)
+      self.assertIs(i, file2._FileStorage__objects)
       """for k, v in i.items():
           for q, j in v.items():
               self.assertIn(q, ["id", "created_at", "updated_at", "__class__"])
