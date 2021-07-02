@@ -26,10 +26,10 @@ Public instance attributes:</br>
 - `updated_at` - datetime - assign with the current datetime when an instance is created and it will be updated every time you change your object </br>
 
 Public instance methods:</br>
-       - `save(self)` - updates the public instance attribute updated_at with the current datetime </br>
-       - `to_dict(self)` -  returns a dictionary containing all keys/values of __dict__ of the instance.</br>
+- `save(self)` - updates the public instance attribute updated_at with the current datetime </br>
+- `to_dict(self)` -  returns a dictionary containing all keys/values of __dict__ of the instance.</br>
 
-`__str__` - prints `[<class name>] (<self.id>) <self.__dict__>` </br>
+- `__str__` - prints `[<class name>] (<self.id>) <self.__dict__>` </br>
 
 - #### models/__init__.py
 Creates a unique `FileStorage` instance called `storage` for the application that
@@ -39,10 +39,10 @@ is used to reload previous objects created.
 This class has methods that serializes a python dictionary to  JSON string and reverses the process from JSON string to a python dictionary
 
 Private class attributes:</br>
-	-` __file_path` - string - path to the JSON file</br>
-	- `__objects` - dictionary - empty but will store all objects by <class name>.id </br>
+-` __file_path` - string - path to the JSON file</br>
+- `__objects` - dictionary - empty but will store all objects by <class name>.id </br>
 Public instance methods:</br>
-       - `all(self)` - returns the dictionary __objects </br>
-       - `new(self, obj)` - sets in __objects the obj with key <obj class name>.id </br>
+- `all(self)` - returns the dictionary __objects </br>
+- `new(self, obj)` - sets in __objects the obj with key <obj class name>.id </br>
        - `save(self)` - serializes __objects to the JSON file (path: __file_path) </br>
        - `reload(self)` - deserializes the JSON file to __objects (only if the JSON file (__file_path) exists </br>
