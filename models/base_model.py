@@ -59,8 +59,8 @@ class BaseModel:
         with the current datetime
         Calls save(self) method of storage
         """
-        models.storage.save()
         self.updated_at = datetime.now()
+        models.storage.save()
 
     def to_dict(self):
         """
@@ -70,9 +70,7 @@ class BaseModel:
         my_dict = {}
         my_dict["__class__"] = self.__class__.__name__
         for k, v in self.__dict__.items():
-            if k == "id":
-                my_dict[k] = v
-            elif isinstance(v, datetime):
+            if k == "created_at" or k == "updated_at":
                 my_dict[k] = v.isoformat()
             else:
                 my_dict[k] = v
