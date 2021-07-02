@@ -44,5 +44,5 @@ Private class attributes:</br>
 Public instance methods:</br>
 - `all(self)` - returns the dictionary __objects </br>
 - `new(self, obj)` - sets in __objects the obj with key <obj class name>.id </br>
-       - `save(self)` - serializes __objects to the JSON file (path: __file_path) </br>
-       - `reload(self)` - deserializes the JSON file to __objects (only if the JSON file (__file_path) exists </br>
+- `save(self)` - serializes __objects to the JSON file (path: __file_path) </br>
+- `reload(self)` - deserializes the JSON file to __objects (only if the JSON file (__file_path) exists </br>
