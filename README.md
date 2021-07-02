@@ -21,9 +21,9 @@ At the end, we will have a complete web application composed of:
 - #### models/base_model.py
 Defines all common attributes/methods for other classes:</br>
 Public instance attributes:</br>
-       - `id` - string - assigned with an uuid when an instance is created </br>
-       - `created_at` - datetime - assigned with the current datetime when an instance is created </br>
-       - `updated_at` - datetime - assign with the current datetime when an instance is created and it will be updated every time you change your object </br>
+- `id` - string - assigned with an uuid when an instance is created </br>
+- `created_at` - datetime - assigned with the current datetime when an instance is created </br>
+- `updated_at` - datetime - assign with the current datetime when an instance is created and it will be updated every time you change your object </br>
 
 Public instance methods:</br>
        - `save(self)` - updates the public instance attribute updated_at with the current datetime </br>
