@@ -1,6 +1,13 @@
 # AirBnB clone - The console
 <img src="https://www.tabbykatz.com/hbnb.png" width="160" height=auto />
 
+> This is the first phase of the Airbnb Clone: the console. This repository
+> holds a command interpreter and classes (i.e. BaseModel class and several
+> other classes that inherit from it: Amenity, City, State, Place, Review), and
+> a command interpreter. The command interpreter, like a shell, can be
+> activated, take in user input, and perform certain tasks to manipulate the
+> object instances.
+
 ## Background Context
 The goal of the project is to deploy on your server a simple copy of the AirBnB website.
 At the end, we will have a complete web application composed of:
@@ -46,3 +53,54 @@ Public instance methods:</br>
 - `new(self, obj)` - sets in __objects the obj with key <obj class name>.id </br>
 - `save(self)` - serializes __objects to the JSON file (path: __file_path) </br>
 - `reload(self)` - deserializes the JSON file to __objects (only if the JSON file (__file_path) exists </br>
+
+#### Installation
+```
+git clone git@github.com:Janengethe/AirBnB_clone.git
+cd AirBnB_clone
+```
+
+#### Usage
+Interactive Mode
+
+```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
+```
+
+Non-Interactive Mode
+
+```
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+$ cat test_help
+help
+$
+$ cat test_help | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit
+(hbnb)
+$
+```
+
+#### Authors
+* [Jane Ng'ethe](https://github.com/Janengethe)
+* [Claudette Mokeira](https://github.com/keira-claudette)
