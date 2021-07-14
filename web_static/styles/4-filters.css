@@ -1,25 +1,26 @@
-.container .filters {
+div.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    text-align: center;
+}
+section.filters {
     background-color: white;
-    position: relative;
     height: 70px;
     width: 100%;
     border: 1px solid #DDDDDD;
     border-radius: 4px;
 }
-
-button {
-    font-size: 18px;
+section.filters button {
     background-color: #FF5A5F;
-    color: #FFFFFF;
     height: 48px;
     width: 20%;
     border: 0;
     border-radius: 4px;
-    position: absolute;
-    top: 15%;
-    right: 30px;
+    font-size: 18px;
+    color: #FFFFFF;
+    float: right;
+    margin: 11px 30px;
 }
-
-button:hover {
-    opacity: 0.9;
+section.filters button:hover {
+    opacity: .9;
 }

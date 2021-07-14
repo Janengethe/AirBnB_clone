@@ -4,7 +4,7 @@ footer {
     width: 100%;
     border-top: 1px solid #CCCCCC;
     position: fixed;
+    bottom: 0;
     text-align: center;
     line-height: 60px;
-    bottom: 0;
 }

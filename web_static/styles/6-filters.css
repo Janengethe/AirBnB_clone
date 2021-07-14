@@ -2,7 +2,7 @@
 div.container {
     max-width: 1000px;
     margin: 30px auto;
-    text-align: center;
+    /* text-align: center; */
 }
 section.filters {
     background-color: white;
@@ -52,4 +52,25 @@ section.filters button:hover {
     margin-bottom: 0px;
     text-align: left;
     margin-left: 30px;
+}
+/* display location and amenities options upon hover */
+.popover {
+    display: none;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1;
+}
+.popover h2 {
+    font-size: 16px;
+}
+li {
+    list-style-type: none;
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block;
 }
