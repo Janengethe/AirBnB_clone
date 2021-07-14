@@ -11,16 +11,16 @@ section.filters {
     border-radius: 4px;
 }
 section.filters button {
+    font-size: 18px;
     background-color: #FF5A5F;
     height: 48px;
     width: 20%;
     border: 0;
     border-radius: 4px;
-    font-size: 18px;
     color: #FFFFFF;
     float: right;
     margin: 11px 30px;
 }
 section.filters button:hover {
-    opacity: .9;
+    opacity: 0.9;
 }

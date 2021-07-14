@@ -2,7 +2,6 @@
 div.container {
     max-width: 1000px;
     margin: 30px auto;
-    /* text-align: center; */
 }
 section.filters {
     background-color: white;
